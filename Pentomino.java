@@ -1,8 +1,5 @@
 public class Pentomino{
 
-	public Pentomino(){
-	}
-
 	public char[][] getPentomino(){
 		char[][] p = {{'p','p'},{'p','p'},{'p','0'}};
 		char[][] x = {{'0','x','0'},{'x','x','x'},{'0','x','0'}};
