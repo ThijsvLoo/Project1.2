@@ -103,4 +103,14 @@ public class Board{
 	public void down(char[][] pent){
 		
 	}
+
+	public boolean isFull(char[][] a, int x) { //checks for line with index x in the bord for being full
+		for (int i= 0; i<a[x].length; i++) {
+			if (a[x][i]==0) {
+				return false;
+				}
+			return true;
+			}
+		}
+	}
 }
