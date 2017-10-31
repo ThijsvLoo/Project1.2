@@ -1,4 +1,9 @@
-public class Tetris{
+public class Pentomino{
+
+	public Pentomino(){
+		private char[][] pent = new char[5][5];
+	}
+
 	public char[][] getPentomino(){
 		char[][] p = {{'p','p'},{'p','p'},{'p','0'}};
 		char[][] x = {{'0','x','0'},{'x','x','x'},{'0','x','0'}};
@@ -12,9 +17,9 @@ public class Tetris{
 		char[][] u = {{'u','0','u'},{'u','u','u'}};
 		char[][] n = {{'n','n','0','0'},{'0','n','n','n'}};
 		char[][] l = {{'0','0','0','l'},{'l','l','l','l'}};
-		char[][][] pent = {p,x,f,v,w,y,i,t,z,u,n,l};
+		char[][][] pentList = {p,x,f,v,w,y,i,t,z,u,n,l};
 		
 		int random = (int) Math.random()*12;
-		return pent[random];
+		return pentList[random];
 	}
 }
