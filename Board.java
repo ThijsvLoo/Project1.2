@@ -1,11 +1,13 @@
 public class Board{
-	private int width;
 	private int height;
+	private int width;
 	
 	
 	//constructor
-	public Board(int width, height){
-		char[][] board = new[width][height]; //empty board
+	public Board(int height, int width){
+		height = 15;
+		width = 5;
+		char[][] board = new[height][width]; //empty board
 	}
 	
 	public char[][] makeBoard(){
@@ -30,11 +32,13 @@ public class Board{
 		
 	}
 	
-	public void rotateRight(char[][] pent, int width, int height){
-		Char[][] tempMatrix = a[m][n];
- 		for(int i=0; i<m; i++){
- 			for(int j=0; j<n; j++){
- 				tempMatrix[i][j] = a[j][i];
+	public void rotateRight(char[][] pent){
+		int height = pent.length;
+		int width = pent[0].length;
+		Char[][] tempMatrix = pent[width][height];
+ 		for(int i=0; i<width; i++){
+ 			for(int j=0; j<height; j++){
+ 				tempMatrix[i][j] = pent[j][i];
  			}
  		}
  		rotatedMatrix[][]=flipMatrix(tempMatrix);
@@ -42,9 +46,29 @@ public class Board{
 	}
 	
 	public void rotateLeft(char[][] pent){
-		
+		int height = pent.length;
+		int width = pent[0].length;
+		Char[][] tempMatrix = pent[width][height];
+ 		for(int i=0; i<width; i++){
+ 			for(int j=0; j<height; j++){
+ 				tempMatrix[i][j] = pent[j][i];
+ 			}
+ 		}
+ 		rotatedMatrix[][]=flipMatrix(tempMatrix);
+ 		return rotatedMatrix;
 	}
 	
+	public static Char[][] flipMatrix(Char[][] pent){
+ 		int height = pent.length;
+		int width = pent[0].length;
+		Char[][] flipMatrix = pent[width][height]; 
+ 		for(int i=0; i<width; i++){
+			for(int j=0; j<height; j++){
+				flipMatrix[i][j] = pent[i][a[0].length-1-j];
+			}
+		}
+		return flipMatrix;
+	}
 	public void shiftRight(char[][] pent, int width, int height){
 		int heightP = pent.length;
 		int widthP = pent[0].length;
