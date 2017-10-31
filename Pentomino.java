@@ -1,7 +1,6 @@
 public class Pentomino{
 
 	public Pentomino(){
-		private char[][] pent = new char[5][5];
 	}
 
 	public char[][] getPentomino(){
