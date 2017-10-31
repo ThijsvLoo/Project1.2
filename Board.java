@@ -1,35 +1,34 @@
 public class Board{
 	private int width;
 	private int height;
-	
-	
+
+
 	//constructor
 	public Board(int width, height){
 		char[][] board = new[width][height]; //empty board
 	}
-	
+
 	public char[][] makeBoard(){
-		
+
 	}
-	
+
 	public void placingPentomino(){
 		while(//falls){
-			
+
 		}
-	}
-	
+
 	public void fall(char[][] pent){
-		
+
 	}
-	
+
 	public void gameOver(){
-		
+
 	}
-	
+
 	public void newPentomino(char[][] pent){
-		
+
 	}
-	
+
 	public void rotateRight(char[][] pent, int width, int height){
 		Char[][] tempMatrix = a[m][n];
  		for(int i=0; i<m; i++){
@@ -40,11 +39,11 @@ public class Board{
  		rotatedMatrix[][]=flipMatrix(tempMatrix);
  		return rotatedMatrix;
 	}
-	
+
 	public void rotateLeft(char[][] pent){
-		
+
 	}
-	
+
 	public void shiftRight(char[][] pent, int width, int height){
 		int heightP = pent.length;
 		int widthP = pent[0].length;
@@ -58,9 +57,9 @@ public class Board{
 				}
 			}
 		}
-				
+
 	}
-	
+
 	public void shiftLeft(char[][] pent){
 		int heightP = pent.length;
 		int widthP = pent[0].length;
@@ -75,8 +74,17 @@ public class Board{
 			}
 		}
 	}
-	
+
 	public void down(char[][] pent){
-		
+
 	}
+
+  public boolean isFull(char[][] a, int x) { //checks for line with index x in the bord for being full
+    for (int i= 0; i<a[x].length; i++) {
+      if (a[x][i]==0) {
+        return false;
+      }
+      return true;
+    }
+  }
 }
