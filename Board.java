@@ -41,4 +41,50 @@ public class Board{
 			}
 		}
 	}
+	
+	public void shiftRight(char[][] pent, int width, int height){
+		int heightP = pent.length;
+		int widthP = pent[0].length;
+		for(int i = 0; i<heightP; i++){
+			for(int j = 0; j< widthP; j++){
+				if(board[i][j+1] == '0' && j != width-1){
+					pent[i][j] = pent[i][j+1];
+				}
+				else{
+					pent[i][j] = pent[i][j];
+				}
+			}
+		}
+				
+	}
+	
+	public void shiftLeft(char[][] pent){
+		int heightP = pent.length;
+		int widthP = pent[0].length;
+		for(int i = 0; i<heightP; i++){
+			for(int j = 0; j< widthP; j++){
+				if(board[i][j-1] == '0'0 & j != 0){
+					pent[i][j] = pent[i][j-1];
+				}
+				else{
+					pent[i][j] = pent[i][j];
+				}
+			}
+		}
+	}
+	
+	public void down(char[][] pent){
+		int heightP = pent.length;
+		int widthP = pent[0].length;
+		for(int i = 0; i<heightP; i++){
+			for(int j = 0; j<widthP; j++){
+				if(board[i-1][j] == '0' & i != 0){
+					pent[i][j] = pent[i-1][j];
+				}
+				else{
+					pent[i][j] = pent[i][j];
+				}
+			}
+		}
+	}
 }
