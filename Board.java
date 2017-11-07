@@ -91,12 +91,12 @@ public class Board{
 		} else { //if not out of bound, check if there is something
 			for(int i=0; i < pent.length; i++) {
 				for(int j=0; j < pent[0].length; j++) {
-					if (pent[i][j]!='0' && board[x+i][y+j]!='0') {
-						return false;
+					if (pent[i][j] !='0' && (board[x+i][y+j] ='0' || board[x+i][y+j] = pent)) {
+						return true;
 					}
 				}
 			}
-			return true;
+			return false;
 		}
 	}
 }
