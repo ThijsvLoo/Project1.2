@@ -14,9 +14,14 @@ public class Board{
 		
 	}
 	
-	public void placingPentomino(){
+	public void placingPentomino(int x, int y){
 		while(/*falls*/){
 			
+		}
+		for(int i =0; i < pent[0].length; i++){
+			for(int j = 0; j < pent.length; j++){
+				board[x+i][y+j] = pent[i][j];
+			}
 		}
 	}
 	
