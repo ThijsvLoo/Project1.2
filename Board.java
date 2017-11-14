@@ -1,18 +1,18 @@
 public class Board{
-	private int height;
-	private int width;
-	private int currentPent;
-	private int x;
-	private int y;
+	private int height; //height of the board
+	private int width; //width of the board
+	private int currentPent; //number of the current Pentomino
+	private int x; //coordinate x
+	private int y; //coordinate y
 
 		//constructor
 	public Board(){
 		height = 15;
 		width = 5;
-		int[][] board = new[height][width]; //empty board
+		int[][] board = new[height][width]; //new empty board
 	}
 
-	public void showPentomino(int x, int y){ //places Pentomino  in the board
+	public void showPentomino(int x, int y){ //shows pentomino at a certain spot with the coordinates x, y
 		for(int i =0; i < pent[0].length; i++){
 			for(int j = 0; j < pent.length; j++){
 				board[x+i][y+j] = pent[i][j];
@@ -39,10 +39,8 @@ public class Board{
 		}
 	}
 
-	public void gameOver(int[][] pent; int[][] board){
-		if (!fits(pent, board, 1, 0) {
-			//Game over code here...
-		}
+	public void gameOver(int[][] pent; int[][] board){ //if a new Pentomino can't be made, this method is called (game-over-screen)
+
 	}
 
 	public void newPentomino(int[][] pent){ //for placing it at the top
@@ -75,7 +73,7 @@ public class Board{
 		}
 	}
 
-	public void shiftRight(int[][] pent, int width, int height){
+	public void shiftRight(int[][] pent, int width, int height){ //shifts a pentomino to the right
 		int heightP = pent.length;
 		int widthP = pent[0].length;
 		for(int i = 0; i<heightP; i++){
@@ -91,7 +89,7 @@ public class Board{
 
 	}
 
-	public void shiftLeft(int[][] pent){
+	public void shiftLeft(int[][] pent){ //shifts a pentomino to the left
 		int heightP = pent.length;
 		int widthP = pent[0].length;
 		for(int i = 0; i<heightP; i++){
@@ -106,7 +104,7 @@ public class Board{
 		}
 	}
 
-	public void down(int[][] pent, int[][] board, int x, int y) {
+	public void down(int[][] pent, int[][] board, int x, int y) { //let's the pentomino move down all the way until it hits something
 		for (int i = y; i > board.length; i++) {
 			if(!fits(pent, board, x, y)) {
 				//place the pentomino in [x][y-1]
@@ -116,10 +114,10 @@ public class Board{
 		newPentomino();
 	}
 
-	public boolean fits(int[][] pent, int[][] board, int x, int y) { //checks if the Pentomino fits in the given spot
+	public boolean fits(int[][] pent, int[][] board, int x, int y) { //checks if the Pentomino fits in the given spot with coordinates x, y
 		if (x + pent[0].length > board[0].length || y + pent.length > board.length) { //checks for out of bounds
 			return false;
-		} else { //if not out of bound, check if there is something
+		} else { //if not out of bound, check if there is nothing
 			for(int i=0; i < pent.length; i++) {
 				for(int j=0; j < pent[0].length; j++) {
 					if (pent[i][j] != 0 && (board[x+i][y+j] = 0 || board[x+i][y+j] = currentPent)) {
