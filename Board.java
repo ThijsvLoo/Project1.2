@@ -10,9 +10,10 @@ public class Board{
 		height = 15;
 		width = 5;
 		int[][] board = new[height][width]; //new empty board
+		Pentomino pentomino = new Pentomino;
 	}
 
-	public void showPentomino(int x, int y){ //shows pentomino at a certain spot with the coordinates x, y
+	public void placePentomino(int x, int y){ //shows pentomino at a certain spot with the coordinates x, y
 		for(int i =0; i < pent[0].length; i++){
 			for(int j = 0; j < pent.length; j++){
 				board[x+i][y+j] = pent[i][j];
