@@ -14,11 +14,11 @@ public class Pentomino{
 		int[][] n = {{11,11,0,0},{0,11,11,11}};
 		int[][] l = {{0,0,0,12},{12,12,12,12}};
 		int[][][] pentList = {p,x,f,v,w,y,i,t,z,u,n,l};
-		
+
 		int random = (int) Math.random()*12;
 		return pentList[random];
 	}
-	
+
 	public int[][] rotateRight(int[][] pent){
 		int height = pent.length;
 		int width = pent[0].length;
@@ -30,7 +30,7 @@ public class Pentomino{
  		}
  		return tempMatrix;
 	}
-	
+
 	public int[][] rotateLeft(int[][] pent){
 		int height = pent.length;
 		int width = pent[0].length;
@@ -41,9 +41,5 @@ public class Pentomino{
  			}
  		}
  		return tempMatrix;
-	}
-	
-	public void down(int[][] pent){
-		
 	}
 }
