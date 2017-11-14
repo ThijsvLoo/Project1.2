@@ -20,7 +20,7 @@ public class Board{
 		}
 	}
 
-		public void shiftDown(int[][] pent, int[][]board, int x, int y){ //moves the current pentomino one space lower 
+		public void shiftDown(int[][] pent, int[][]board, int x, int y){ //moves the current pentomino one space lower
 		if(fits(pent,board,x,y+1){
 			for(int i = 0; i<pent.length; i++){
 				for(int j = 0; j<pent[0].length; j++){
@@ -29,13 +29,13 @@ public class Board{
 			}
 		}
 	}
-	
-	public void gameOver(int[][] pent, int[][] board){ 
+
+	public void gameOver(int[][] pent, int[][] board){
 		if (!fits(pent, board, 1, 0) {
 			//Game over code here...
 		}
 	}
-	
+
 	public void newPentomino(int[][] pent, int[][] board, x, y){ //for placing it at the top
 		if(!fits(pent,board,x,y+1){
 			for(int i = 0; i<pent.length; i++){
@@ -60,16 +60,16 @@ public class Board{
 >>>>>>> 09bf6e84f9ed4af3d630167fd3d407e897b3ea71
 
 		if(fits(pent, board, 0, 3) && pent.length == 1){
-			placingPentomino(0,3);
+			showPentomino(0,3);
 		}
 		else if(fits(pent, board, 0, 2) && pent.length == 2 || pent.length == 3){
-			placingPentomino(0,2);
+			showPentomino(0,2);
 		}
 		else if(fits(pent, board, 0, 1) && pent.length == 4){
-			placingPentomino(0,1);
+			showPentomino(0,1);
 		}
 		else if(fits(pent, board, 0, 0) && pent.length == 5){
-			placingPentomino(0,0);
+			showPentomino(0,0);
 		}
 		else{
 			//GAMEOVER!
