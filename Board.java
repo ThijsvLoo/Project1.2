@@ -4,14 +4,14 @@ public class Board{
 	private int currentPent;
 	private int x;
 	private int y;
-	
+
 		//constructor
 	public Board(){
 		height = 15;
 		width = 5;
 		int[][] board = new[height][width]; //empty board
 	}
-	
+
 	public void showPentomino(int x, int y){ //places Pentomino  in the board
 		for(int i =0; i < pent[0].length; i++){
 			for(int j = 0; j < pent.length; j++){
@@ -19,12 +19,12 @@ public class Board{
 			}
 		}
 	}
-	
-	public void shiftDown(int[][] pent, int[][]board, int x, int y){ //moves the current pentomino one space lower 
+
+	public void shiftDown(int[][] pent, int[][]board, int x, int y){ //moves the current pentomino one space lower
 		if(fits(pent,board,x,y+1){
 			for(int i = 0; i<pent.length; i++){
 				for(int j = 0; j<pent[0].length; j++){
-					board[i][j] = board[i][j+1];
+					y = y+1;
 				}
 			}
 		}
@@ -38,16 +38,16 @@ public class Board{
 			}
 		}
 	}
-	
-	public void gameOver(int[][] pent; int[][] board){ 
+
+	public void gameOver(int[][] pent; int[][] board){
 		if (!fits(pent, board, 1, 0) {
 			//Game over code here...
 		}
 	}
-	
+
 	public void newPentomino(int[][] pent){ //for placing it at the top
 		pent = Pentomino.getPentomino();
-		
+
 		if(fits(pent, board, 0, 3) && pent.length == 1){
 			placingPentomino(0,3);
 		}
@@ -74,7 +74,7 @@ public class Board{
 			}
 		}
 	}
-	
+
 	public void shiftRight(int[][] pent, int width, int height){
 		int heightP = pent.length;
 		int widthP = pent[0].length;
@@ -88,9 +88,9 @@ public class Board{
 				}
 			}
 		}
-				
+
 	}
-	
+
 	public void shiftLeft(int[][] pent){
 		int heightP = pent.length;
 		int widthP = pent[0].length;
@@ -105,7 +105,7 @@ public class Board{
 			}
 		}
 	}
-	
+
 	public void down(int[][] pent, int[][] board, int x, int y) {
 		for (int i = y; i > board.length; i++) {
 			if(!fits(pent, board, x, y)) {
@@ -115,7 +115,7 @@ public class Board{
 		}
 		newPentomino();
 	}
-		    
+
 	public boolean fits(int[][] pent, int[][] board, int x, int y) { //checks if the Pentomino fits in the given spot
 		if (x + pent[0].length > board[0].length || y + pent.length > board.length) { //checks for out of bounds
 			return false;
