@@ -1,7 +1,9 @@
 public class Board{
 	private int height;
 	private int width;
-	
+	private int currentPent;
+	private int x;
+	private int y;
 	
 		//constructor
 	public Board(){
