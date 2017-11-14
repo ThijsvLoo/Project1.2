@@ -13,9 +13,6 @@ public class Board{
 	}
 	
 	public void placingPentomino(int x, int y){ //places Pentomino  in the board
-		while(/*falls*/){
-			
-		}
 		for(int i =0; i < pent[0].length; i++){
 			for(int j = 0; j < pent.length; j++){
 				board[x+i][y+j] = pent[i][j];
@@ -95,12 +92,13 @@ public class Board{
 	}
 	
 	public void down(int[][] pent, int[][] board, int x, int y) {
-	for (int i = y; i > board.length; i++) {
-		if(!fits(pent, board, x, y)) {
-			//place the pentomino in [x][y-1]
-			break;
+		for (int i = y; i > board.length; i++) {
+			if(!fits(pent, board, x, y)) {
+				//place the pentomino in [x][y-1]
+				break;
 			}
 		}
+		newPentomino();
 	}
 		    
 	public boolean fits(int[][] pent, int[][] board, int x, int y) { //checks if the Pentomino fits in the given spot
