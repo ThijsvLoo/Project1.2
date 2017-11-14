@@ -46,6 +46,24 @@ public class Board{
 				}
 			}
 		}
+		
+		pent = Pentomino.getPentomino();
+		
+		if(fits(pent, board, 0, 3) && pent.length == 1){
+			placingPentomino(0,3);
+		}
+		else if(fits(pent, board, 0, 2) && pent.length == 2 || pent.length == 3){
+			placingPentomino(0,2);
+		}
+		else if(fits(pent, board, 0, 1) && pent.length == 4){
+			placingPentomino(0,1);
+		}
+		else if(fits(pent, board, 0, 0) && pent.length == 5){
+			placingPentomino(0,0);
+		}
+		else{
+			//GAMEOVER!
+		}
 	}
 
 	public void gameOver(int[][] pent; int[][] board){ //if a new Pentomino can't be made, this method is called (game-over-screen)
