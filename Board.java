@@ -12,7 +12,7 @@ public class Board{
 		int[][] board = new[height][width]; //empty board
 	}
 	
-	public void placingPentomino(int x, int y){ //places Pentomino  in the board
+	public void showPentomino(int x, int y){ //places Pentomino  in the board
 		for(int i =0; i < pent[0].length; i++){
 			for(int j = 0; j < pent.length; j++){
 				board[x+i][y+j] = pent[i][j];
@@ -20,8 +20,23 @@ public class Board{
 		}
 	}
 	
-	public void shiftDown(int[][] pent){ //moves the current pentomino one space lower
-		
+	public void shiftDown(int[][] pent, int[][]board, int x, int y){ //moves the current pentomino one space lower 
+		if(fits(pent,board,x,y+1){
+			for(int i = 0; i<pent.length; i++){
+				for(int j = 0; j<pent[0].length; j++){
+					board[i][j] = board[i][j+1];
+				}
+			}
+		}
+		else{
+			for(int i = 0; i<pent.length; i++){
+				for(int j = 0; j<pent[0].length; j++){
+					if(pent[i][j] !=  0 && pent[i][j]<13){
+						pent[i][j] = pent[i][j]+20;
+					}
+				}
+			}
+		}
 	}
 	
 	public void gameOver(int[][] pent; int[][] board){ 
