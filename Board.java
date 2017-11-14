@@ -46,7 +46,6 @@ public class Board{
 				}
 			}
 		}
-<<<<<<< HEAD
 	}
 
 	public void gameOver(int[][] pent; int[][] board){ //if a new Pentomino can't be made, this method is called (game-over-screen)
@@ -55,9 +54,6 @@ public class Board{
 
 	public void newPentomino(int[][] pent){ //for placing it at the top
 		pent = Pentomino.getPentomino();
-=======
-		   	pent = Pentomino.getPentomino();
->>>>>>> 09bf6e84f9ed4af3d630167fd3d407e897b3ea71
 
 		if(fits(pent, board, 0, 3) && pent.length == 1){
 			placingPentomino(0,3);
