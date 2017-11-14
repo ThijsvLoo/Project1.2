@@ -23,7 +23,7 @@ public class Board{
 		}
 	}
 	
-	public void fall(int[][] pent){ //moves the current pentomino one space lower 
+	public void shiftDown(int[][] pent){ //moves the current pentomino one space lower
 		
 	}
 	
@@ -109,7 +109,7 @@ public class Board{
 		} else { //if not out of bound, check if there is something
 			for(int i=0; i < pent.length; i++) {
 				for(int j=0; j < pent[0].length; j++) {
-					if (pent[i][j] !='0' && (board[x+i][y+j] ='0' || board[x+i][y+j] = pent)) {
+					if (pent[i][j] != 0 && (board[x+i][y+j] = 0 || board[x+i][y+j] = currentPent)) {
 						return true;
 					}
 				}
