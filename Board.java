@@ -76,30 +76,33 @@ public class Board{
 		}
 	}
 
-	public boolean isFull(int[][] a, int x) { //checks for line with index x in the bord for being full
-		for (int i= 0; i<a[x].length; i++) {
-			if (a[x][i]==0) {
+	public boolean isFull(int[][] board, int x) { //checks for line with index x in the bord for being full
+		for (int i= 0; i<board[x].length; i++) {
+			if (board[x][i]==0) {
 				return false;
 				}
 			return true;
 			}
 		}
 	}
-
-	public void shiftRight(int[][] pent, int width, int height){ //shifts a pentomino to the right
-		int heightP = pent.length;
-		int widthP = pent[0].length;
-		for(int i = 0; i<heightP; i++){
-			for(int j = 0; j< widthP; j++){
-				if(board[i][j+1] == '0' && j != width-1){
-					pent[i][j] = pent[i][j+1];
+	
+	public void deletingRow(int[][] board){
+		for(int j = 0; j<board.length; j++){
+			if(isFull(board, j)){
+				for(int i = 0; i<board[0].length;i++){
+					board[j][i] = board[j][i-1];
 				}
-				else{
-					pent[i][j] = pent[i][j];
+				for(int i =0; i<board[0].length; i++){
+					for(int l = j-1; l>0; l--){
+						board[l][i] = board[l-1][i];
+						board[0][i] = 0;
+					}
+				}
+				for(int i=0; i<board[0].length; i++){
+					board[0][i] = 0;
 				}
 			}
-		}
-
+		}		
 	}
 
 	public void shiftLeft(int[][] pent){ //shifts a pentomino to the left
