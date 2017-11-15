@@ -37,19 +37,17 @@ public class Board{
 		}
 	}
 
-	public void newPentomino(int[][] pent, int[][] board, x, y){ //for placing it at the top
-		if(!fits(pent,board,x,y+1){
-			for(int i = 0; i<pent.length; i++){
-				for(int j = 0; j<pent[0].length; j++){
-					if(pent[i][j] !=  0 && pent[i][j]<13){
-						pent[i][j] = pent[i][j]+20;
-					}
+	public void newPentomino(int[][] board){ //for placing it at the top
+		for(int i = 0; i<board.length; i++){
+			for(int j = 0; j<board[0].length; j++){
+				if(board[i][j] !=  0 && board[i][j]<13){
+					board[i][j] = board[i][j]+20;
 				}
 			}
 		}
-		
-		pent = Pentomino.getPentomino();
-		
+
+		int pent[][] = Pentomino.getPentomino();
+
 		if(fits(pent, board, 0, 3) && pent.length == 1){
 			placingPentomino(0,3);
 		}
@@ -145,18 +143,18 @@ public class Board{
 		newPentomino();
 	}
 
-	public boolean fits(int[][] pent, int[][] board, int x, int y) { //checks if the Pentomino fits in the given spot with coordinates x, y
+	public boolean fits(int[][] pent, int x, int y) { //checks if the Pentomino fits in the given spot with coordinates x, y
 		if (x + pent[0].length > board[0].length || y + pent.length > board.length) { //checks for out of bounds
 			return false;
 		} else { //if not out of bound, check if there is nothing
 			for(int i=0; i < pent.length; i++) {
 				for(int j=0; j < pent[0].length; j++) {
-					if (pent[i][j] != 0 && (board[x+i][y+j] = 0 || board[x+i][y+j] = currentPent)) {
-						return true;
+					if (pent[i][j] != 0 && (board[x+i][y+j] != 0)) {
+						return false;
 					}
 				}
 			}
-			return false;
+			return true;
 		}
 	}
 }
