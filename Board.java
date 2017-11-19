@@ -1,160 +1,107 @@
-public class Board{
-	private int height; //height of the board
-	private int width; //width of the board
-	private int currentPent; //number of the current Pentomino
-	private int x; //coordinate x
-	private int y; //coordinate y
-
-		//constructor
+import javax.swing.*;
+import java.awt.*;
+public class Board extends JPanel{
+	//private BufferedImage blocks;
+	private final int blockSize = 50;
+	private final int boardWidth = 5;
+	private final int boardHeight = 15;
+	private int[][] board = new int[boardWidth][boardHeight];
+	
+	// private Shape[] shapes = new Shape[12];
 	public Board(){
-		height = 15;
-		width = 5;
-		int[][] board = new[height][width]; //new empty board
-		Pentomino pentomino = new Pentomino;
-	}
-
-	public void placePentomino(int x, int y){ //shows pentomino at a certain spot with the coordinates x, y
-		for(int i =0; i < pent[0].length; i++){
-			for(int j = 0; j < pent.length; j++){
-				board[x+i][y+j] = pent[i][j];
-			}
+		// Where we will insert our "Base" image
+		/* try{
+			blocks = ImageIO.read(Board.class.getResource("/NAME OF IMAGE FILE WE HAVE"));
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-	}
-
-		public void shiftDown(int[][] pent, int[][]board, int x, int y){ //moves the current pentomino one space lower
-		if(fits(pent,board,x,y+1){
-			for(int i = 0; i<pent.length; i++){
-				for(int j = 0; j<pent[0].length; j++){
-					board[i][j] = board[i][j+1];
-				}
-			}
-		}
-	}
-
-	public void gameOver(int[][] pent, int[][] board){
-		if (!fits(pent, board, 1, 0) {
-			//Game over code here...
-		}
-	}
-
-	public void newPentomino(int[][] board){ //for placing it at the top
-		for(int i = 0; i<board.length; i++){
-			for(int j = 0; j<board[0].length; j++){
-				if(board[i][j] !=  0 && board[i][j]<13){
-					board[i][j] = board[i][j]+20;
-				}
-			}
-		}
-
-		int pent[][] = Pentomino.getPentomino();
-
-		if(fits(pent, board, 0, 3) && pent.length == 1){
-			placingPentomino(0,3);
-		}
-		else if(fits(pent, board, 0, 2) && pent.length == 2 || pent.length == 3){
-			placingPentomino(0,2);
-		}
-		else if(fits(pent, board, 0, 1) && pent.length == 4){
-			placingPentomino(0,1);
-		}
-		else if(fits(pent, board, 0, 0) && pent.length == 5){
-			placingPentomino(0,0);
-		}
-		else{
-			//GAMEOVER!
-		}
-	}
-
-	public void gameOver(int[][] pent; int[][] board){ //if a new Pentomino can't be made, this method is called (game-over-screen)
-
-	}
-
-	public void newPentomino(int[][] pent){ //for placing it at the top
-		pent = Pentomino.getPentomino();
-
-		if(fits(pent, board, 0, 3) && pent.length == 1){
-			showPentomino(0,3);
-		}
-		else if(fits(pent, board, 0, 2) && pent.length == 2 || pent.length == 3){
-			showPentomino(0,2);
-		}
-		else if(fits(pent, board, 0, 1) && pent.length == 4){
-			showPentomino(0,1);
-		}
-		else if(fits(pent, board, 0, 0) && pent.length == 5){
-			showPentomino(0,0);
-		}
-		else{
-			//GAMEOVER!
-		}
-	}
-
-	public boolean isFull(int[][] board, int x) { //checks for line with index x in the bord for being full
-		for (int i= 0; i<board[x].length; i++) {
-			if (board[x][i]==0) {
-				return false;
-				}
-			return true;
-			}
-		}
+		*/
+		
+		// Created shapes, but they require the base image to work
+		/*
+		shapes[0] = new Shape(blocks.getSubimage(0, 0, blockSize, blockSize), new int[][] {
+			{1,1,1,1,1} //I shape
+		}, this);
+		
+		shapes[1] = new Shape(blocks.getSubimage(0, 0, blockSize, blockSize), new int[][] {
+			{1,1},
+			{1,1},
+			{1,0} //P shape
+		}, this);
+		
+		shapes[2] = new Shape(blocks.getSubimage(0, 0, blockSize, blockSize), new int[][] {
+			{0,1,0},
+			{1,1,1},
+			{0,1,0} //X shape
+		}, this);
+		
+		shapes[3] = new Shape(blocks.getSubimage(0, 0, blockSize, blockSize), new int[][] {
+			{0,1,1},
+			{1,1,0},
+			{0,1,0} //F shape
+		}, this);
+		
+		shapes[4] = new Shape(blocks.getSubimage(0, 0, blockSize, blockSize), new int[][] {
+			{1,0,0},
+			{1,0,0},
+			{1,1,1}//V shape
+		}, this);
+		
+		shapes[5] = new Shape(blocks.getSubimage(0, 0, blockSize, blockSize), new int[][] {
+			{1,0,0},
+			{1,1,0},
+			{0,1,1} //W shape
+		}, this);
+		
+		shapes[6] = new Shape(blocks.getSubimage(0, 0, blockSize, blockSize), new int[][] {
+			{0,1},
+			{1,1},
+			{0,1},
+			{0,1} //Y shape
+		}, this);
+		
+		shapes[7] = new Shape(blocks.getSubimage(0, 0, blockSize, blockSize), new int[][] {
+			{1,1,1},
+			{0,1,0},
+			{0,1,0} //t shape
+		}, this);
+		
+		shapes[8] = new Shape(blocks.getSubimage(0, 0, blockSize, blockSize), new int[][] {
+			{1,1,0},
+			{0,1,0},
+			{0,1,1} //Z shape
+		}, this);
+		
+		shapes[9] = new Shape(blocks.getSubimage(0, 0, blockSize, blockSize), new int[][] {
+			{1,0,1},
+			{1,1,1} //U shape
+		}, this);
+		
+		shapes[10] = new Shape(blocks.getSubimage(0, 0, blockSize, blockSize), new int[][] {
+			{1,1,0,0},
+			{0,1,1,1} //N shape
+		}, this);
+		
+		shapes[11] = new Shape(blocks.getSubimage(0, 0, blockSize, blockSize), new int[][] {
+			{0,0,0,1},
+			{1,1,1,1} //L shape
+		}, this);
+				*/
+		
 	}
 	
-	public void deletingRow(int[][] board){
-		for(int j = 0; j<board.length; j++){
-			if(isFull(board, j)){
-				for(int i = 0; i<board[0].length;i++){
-					board[j][i] = board[j][i-1];
-				}
-				for(int i =0; i<board[0].length; i++){
-					for(int l = j-1; l>0; l--){
-						board[l][i] = board[l-1][i];
-						board[0][i] = 0;
-					}
-				}
-				for(int i=0; i<board[0].length; i++){
-					board[0][i] = 0;
-				}
-			}
-		}		
-	}
-
-	public void shiftLeft(int[][] pent){ //shifts a pentomino to the left
-		int heightP = pent.length;
-		int widthP = pent[0].length;
-		for(int i = 0; i<heightP; i++){
-			for(int j = 0; j< widthP; j++){
-				if(board[i][j-1] == '0'0 & j != 0){
-					pent[i][j] = pent[i][j-1];
-				}
-				else{
-					pent[i][j] = pent[i][j];
-				}
-			}
+	
+	public void paintComponent(Graphics g){
+		super.paintComponent(g);
+		//drawing horizontal lines
+		for(int i = 0; i < boardHeight; i++){
+			g.drawLine(0, i*blockSize, boardWidth*blockSize, i*blockSize);
 		}
-	}
-
-	public void down(int[][] pent, int[][] board, int x, int y) { //let's the pentomino move down all the way until it hits something
-		for (int i = y; i > board.length; i++) {
-			if(!fits(pent, board, x, y)) {
-				//place the pentomino in [x][y-1]
-				break;
-			}
+		//drawing vertical lines
+		for(int j = 0; j < boardWidth; j++){
+			g.drawLine(j*blockSize, 0, j*blockSize, boardHeight*blockSize);
 		}
-		newPentomino();
-	}
-
-	public boolean fits(int[][] pent, int x, int y) { //checks if the Pentomino fits in the given spot with coordinates x, y
-		if (x + pent[0].length > board[0].length || y + pent.length > board.length) { //checks for out of bounds
-			return false;
-		} else { //if not out of bound, check if there is nothing
-			for(int i=0; i < pent.length; i++) {
-				for(int j=0; j < pent[0].length; j++) {
-					if (pent[i][j] != 0 && (board[x+i][y+j] != 0)) {
-						return false;
-					}
-				}
-			}
-			return true;
-		}
+		
+		
 	}
 }
