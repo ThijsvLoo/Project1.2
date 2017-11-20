@@ -4,7 +4,7 @@ import javax.swing.*;
 public class Window {
 	private JFrame window;
 	private Board board;
-	public static final int WIDTH = 250, HEIGHT = 800;
+	public static final int WIDTH = 260, HEIGHT = 800;
 	
 	public Window(){
 		window = new JFrame("Pentris Game");
