@@ -46,7 +46,7 @@ public class Shape {
 		}
 		
 		
-		if(!(x + deltaX + coords[0].length > 5) && !(x + deltaX < 0))
+		if(!(x + deltaX + coords[0].length > board.getBoardWidth) && !(x + deltaX < 0))
 		{
 			
 			for(int row = 0; row < coords.length; row++)
@@ -61,7 +61,7 @@ public class Shape {
 		}		
 			
 		
-		if(!(y + 1 + coords.length > 15))
+		if(!(y + 1 + coords.length > board.getBoardHeight))
 		{
 			
 			for(int row = 0; row < coords.length; row++)
@@ -132,7 +132,7 @@ public class Shape {
 		rotatedMatrix = getTranspose(coords);
 		rotatedMatrix = getReverseMatrix(rotatedMatrix);
 		
-		if(x + rotatedMatrix[0].length > 5 || y + rotatedMatrix.length > 15)
+		if(x + rotatedMatrix[0].length > board.getBoardWidth || y + rotatedMatrix.length > board.getBoardWidth)
 			return;
 		
 		for(int row = 0; row < rotatedMatrix.length; row++)

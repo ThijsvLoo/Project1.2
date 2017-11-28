@@ -181,6 +181,14 @@ public class Board extends JPanel implements KeyListener{
 		System.out.println(this.score);
 	}
 
+	public int getBoardWidth() {
+		return boardWidth;
+	}
+
+	public int getBoardHeight() {
+		return boardHeight;
+	}
+
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if(e.getKeyCode() == KeyEvent.VK_LEFT)
