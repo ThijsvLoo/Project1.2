@@ -5,6 +5,10 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.io.*;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
+import static java.lang.System.*;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
