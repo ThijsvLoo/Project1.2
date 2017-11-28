@@ -8,12 +8,10 @@ public class Shape {
 	private Board board;
 	private int deltaX = 0;
 	private int x, y;
-	
 	private int color;
 	private boolean collision = false, moveX = false;
 	private int normalSpeed = 600, speedDown = 60, currentSpeed;
 	private long time, lastTime;
-
 	private int lineCount = 0;
 	
 	public Shape(BufferedImage block, int[][] coords, Board board, int color){
@@ -106,7 +104,7 @@ public class Shape {
 				if (board.getBoard()[i][j] != 0){
 					count++;
 				}
-				if(count == 5){
+				if(count == board.getBoardWidth()){
 					lineCount++;
 					board.addScore(100*lineCount*lineCount);
 
