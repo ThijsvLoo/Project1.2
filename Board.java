@@ -5,13 +5,17 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.io.*;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
+import static java.lang.System.*;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
 public class Board extends JPanel implements KeyListener{
-	
+
 	private BufferedImage blocks;
 	private final int blockSize = 50;
 	private final int boardWidth = 5, boardHeight = 15;
@@ -25,13 +29,13 @@ public class Board extends JPanel implements KeyListener{
 	private static int score = 0;
 
 	public Board(){
-		
+
 		try {
 			blocks = ImageIO.read(Board.class.getResource("/tiles.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		timer = new Timer(delay, new ActionListener(){
 
 			@Override
@@ -40,7 +44,7 @@ public class Board extends JPanel implements KeyListener{
 				repaint();
 			}
 		});
-		
+
 		timer.start();
 
 		// Created shapes, but they require the base image to work
@@ -112,58 +116,58 @@ public class Board extends JPanel implements KeyListener{
 		setNextShape();
 
 	}
-	
+
 	public void update(){
 		currentShape.update();
 		if(gameOver)
 			timer.stop();
 	}
-	
-	
+
+
 	public void paintComponent(Graphics g){
-		super.paintComponent(g);	
-		
+		super.paintComponent(g);
+
 		currentShape.render(g);
-		
+
 		for(int row = 0; row < board.length; row++)
 			for(int col = 0; col < board[row].length; col++)
 				if(board[row][col] != 0)
 					g.drawImage(blocks.getSubimage((board[row][col]-1)*blockSize, 0, blockSize, blockSize),
 					col*blockSize, row*blockSize, null);
-		
-		
-		
+
+
+
 		for(int i = 0; i < boardHeight; i++){
 			g.drawLine(0, i*blockSize, boardWidth*blockSize, i*blockSize);
 		}
 		for(int j = 0; j < boardWidth; j++){
 			g.drawLine(j*blockSize, 0, j*blockSize, boardHeight*blockSize);
 		}
-		
+
 	}
-	
+
 	public void setNextShape(){
-		
+
 		int index = (int)(Math.random()*shapes.length);
-		
+
 		Shape newShape = new Shape(shapes[index].getBlock(), shapes[index].getCoords(),
 				this, shapes[index].getColor());
-		
+
 		currentShape = newShape;
-		
+
 		for(int row = 0; row < currentShape.getCoords().length; row++)
 			for(int col = 0; col < currentShape.getCoords()[row].length; col++)
 				if(currentShape.getCoords()[row][col] != 0){
-					
+
 					if(board[row][col] != 0)
 						gameOver = true;
 				}
-		
-		
-		
+
+
+
 	}
-	
-	
+
+
 	public int getBlockSize(){
 		return blockSize;
 	}
@@ -206,11 +210,23 @@ public class Board extends JPanel implements KeyListener{
 		if(e.getKeyCode() == KeyEvent.VK_DOWN)
 			currentShape.normalSpeed();
 	}
-	
+
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
-		
+
+	}
+
+	public void gameOver() {
+		String name = JOptionPane.showInputDialog("What's your name?");
+		try {
+				FileWriter fw = new FileWriter("Highscores.txt");
+				PrintWriter pw = new PrintWriter(fw);
+				pw.println(name + " " + getScore());
+				pw.close();
+		} catch (IOException e) {
+				out.println("ERROR!");
+		}
 	}
 
 }
