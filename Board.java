@@ -1,17 +1,22 @@
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.*;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import static java.lang.System.*;
-import java.awt.event.ActionListener; //is needed for the timer!
-import java.awt.event.ActionEvent;
+
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+import java.util.*;
+import java.io.*;
 
-public class Board extends JPanel {
+public class Board extends JPanel implements KeyListener{
 
 	private BufferedImage blocks;
 	private final int blockSize = 50;
@@ -24,6 +29,7 @@ public class Board extends JPanel {
 	private final int delay = 1000/FPS;
 	private boolean gameOver = false;
 	private static int score = 0;
+	private int scoreLength = 3;
 
 	public Board(){
 
@@ -116,9 +122,12 @@ public class Board extends JPanel {
 
 	public void update(){
 		currentShape.update();
-		if(gameOver)
+		if(gameOver) {
 			timer.stop();
+			gameOver();
+		}
 	}
+
 
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
@@ -131,12 +140,15 @@ public class Board extends JPanel {
 					g.drawImage(blocks.getSubimage((board[row][col]-1)*blockSize, 0, blockSize, blockSize),
 					col*blockSize, row*blockSize, null);
 
+
+
 		for(int i = 0; i < boardHeight; i++){
 			g.drawLine(0, i*blockSize, boardWidth*blockSize, i*blockSize);
 		}
-		for(int j = 0; j < boardWidth; j++){
+		for(int j = 0; j < boardWidth+1; j++){
 			g.drawLine(j*blockSize, 0, j*blockSize, boardHeight*blockSize);
 		}
+
 	}
 
 	public void setNextShape(){
@@ -156,7 +168,7 @@ public class Board extends JPanel {
 						gameOver = true;
 				}
 
-				bot();
+
 
 	}
 
@@ -173,9 +185,9 @@ public class Board extends JPanel {
 		return score;
 	}
 
-	public void addScore(int amount) {
-		score += amount;
-		System.out.println(score);
+	public void addScore(int score) {
+		this.score += score;
+		System.out.println(this.score);
 	}
 
 	public int getBoardWidth() {
@@ -186,34 +198,65 @@ public class Board extends JPanel {
 		return boardHeight;
 	}
 
-	public void shiftLeft() {
-		currentShape.setDeltaX(-1);
+	@Override
+	public void keyPressed(KeyEvent e) {
+		if(e.getKeyCode() == KeyEvent.VK_LEFT)
+			currentShape.setDeltaX(-1);
+		if(e.getKeyCode() == KeyEvent.VK_RIGHT)
+			currentShape.setDeltaX(1);
+		if(e.getKeyCode() == KeyEvent.VK_DOWN)
+			currentShape.speedDown();
+		if(e.getKeyCode() == KeyEvent.VK_UP)
+			currentShape.rotate();
 	}
 
-	public void shiftRight() {
-		currentShape.setDeltaX(1);
+	@Override
+	public void keyReleased(KeyEvent e) {
+		if(e.getKeyCode() == KeyEvent.VK_DOWN)
+			currentShape.normalSpeed();
 	}
 
-	public void goFaster() {
-		currentShape.speedDown();
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+
 	}
 
-	public void rotate() {
-		currentShape.rotate();
-	}
-
-	public boolean getGameOver() {
-		return gameOver;
-	}
-
-	public void bot() {
-		while(something) {
-			int[][] board2 = new int[boardHeight][boardWidth];
-			for (int i = 0; i<boardHeight; i++) {
-				for (int j = 0; j<boardWidth; j++) {
-					board2[i][j] = board[i][j];
-				}
+	public void gameOver() {
+		String name = JOptionPane.showInputDialog("What's your name?");
+		String[] nameList = new String[scoreLength + 1];
+		int[] scoreList = new int[scoreLength + 1];
+		try{
+			FileReader reader = new FileReader("scoreList.txt");
+			Scanner in = new Scanner(reader);
+			for(int i = 0; i < scoreLength; i++){
+				nameList[i] = in.next();
+				scoreList[i] = Integer.parseInt(in.next());
 			}
+			reader.close();
+		} catch(Exception e) {
+			System.out.println("Someting wong");
+		}
+
+		for(int k = scoreLength-1; k >= 0; k--){
+			if(score > scoreList[k]){
+				scoreList[k+1] = scoreList[k];
+				nameList[k+1] = nameList[k];
+			} else {
+				scoreList[k+1]= score;
+				nameList[k+1] = name;
+			}
+		}
+
+
+		try{
+			FileWriter writer = new FileWriter("scoreList.txt");
+			for(int l = 0; l < scoreLength; l++){
+				writer.write(nameList[l] + " " + scoreList[l] + System.lineSeparator());
+			}
+			writer.close();
+		} catch(Exception f){
+			System.out.println("Someting else wong");
 		}
 	}
 }

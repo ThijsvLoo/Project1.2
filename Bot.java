@@ -1,14 +1,12 @@
-  import javax.swing.JFrame;
-  import javax.swing.*;
-
-  public class Bot extends Board{
-
-	   public static final int WIDTH = 600, HEIGHT = 1200;
-	   private JFrame window;
-	   public static Board board;
-
-	public Bot(){
-
+import javax.swing.JFrame;
+import javax.swing.*;
+public class Window {
+	
+	public static final int WIDTH = 600, HEIGHT = 1200;
+	private JFrame frame2;
+	private Board board;
+	
+	public Window(){
 		JFrame frame = new JFrame();
 		JPanel panel = new JPanel();
 		frame.setVisible(true);
@@ -20,17 +18,24 @@
 		panel.add(button);
 		frame.add(panel);
 
-		window = new JFrame("Tetris Game");
-		window.setSize(WIDTH, HEIGHT);
-		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		window.setResizable(false);
-		window.setLocationRelativeTo(null);
+		frame2 = new JFrame("Tetris Game");
+		frame2.setSize(WIDTH, HEIGHT);
+		frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame2.setResizable(false);
+		frame2.setLocationRelativeTo(null);
 
 		board = new Board();
-		window.add(board);
-		window.setVisible(true);
+
+		frame2.add(board);
+		frame2.addKeyListener(board);
+		frame2.setVisible(true);
+	}
+	
+	
+	
+	public static void main(String[] args) {
+		Window window = new Window();
+		
 	}
 
-	public static void main(String[] args) {
-		Bot bot = new Bot();
 }
