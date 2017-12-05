@@ -13,6 +13,8 @@ import static java.lang.System.*;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+import java.util.*;
+import java.io.*;
 
 public class Board extends JPanel implements KeyListener{
 
@@ -27,6 +29,7 @@ public class Board extends JPanel implements KeyListener{
 	private final int delay = 1000/FPS;
 	private boolean gameOver = false;
 	private static int score = 0;
+	private int scoreLength = 3;
 
 	public Board(){
 
@@ -119,8 +122,10 @@ public class Board extends JPanel implements KeyListener{
 
 	public void update(){
 		currentShape.update();
-		if(gameOver)
+		if(gameOver) {
 			timer.stop();
+			gameOver();
+		}
 	}
 
 
@@ -140,7 +145,7 @@ public class Board extends JPanel implements KeyListener{
 		for(int i = 0; i < boardHeight; i++){
 			g.drawLine(0, i*blockSize, boardWidth*blockSize, i*blockSize);
 		}
-		for(int j = 0; j < boardWidth; j++){
+		for(int j = 0; j < boardWidth+1; j++){
 			g.drawLine(j*blockSize, 0, j*blockSize, boardHeight*blockSize);
 		}
 
@@ -219,14 +224,39 @@ public class Board extends JPanel implements KeyListener{
 
 	public void gameOver() {
 		String name = JOptionPane.showInputDialog("What's your name?");
-		try {
-				FileWriter fw = new FileWriter("Highscores.txt");
-				PrintWriter pw = new PrintWriter(fw);
-				pw.println(name + " " + getScore());
-				pw.close();
-		} catch (IOException e) {
-				out.println("ERROR!");
+		String[] nameList = new String[scoreLength + 1];
+		int[] scoreList = new int[scoreLength + 1];
+		try{
+			FileReader reader = new FileReader("scoreList.txt");
+			Scanner in = new Scanner(reader);
+			for(int i = 0; i < scoreLength; i++){
+				nameList[i] = in.next();
+				scoreList[i] = Integer.parseInt(in.next());
+			}
+			reader.close();
+		} catch(Exception e) {
+			System.out.println("Someting wong");
+		}
+
+		for(int k = scoreLength-1; k >= 0; k--){
+			if(score > scoreList[k]){
+				scoreList[k+1] = scoreList[k];
+				nameList[k+1] = nameList[k];
+			} else {
+				scoreList[k+1]= score;
+				nameList[k+1] = name;
+			}
+		}
+
+
+		try{
+			FileWriter writer = new FileWriter("scoreList.txt");
+			for(int l = 0; l < scoreLength; l++){
+				writer.write(nameList[l] + " " + scoreList[l] + System.lineSeparator());
+			}
+			writer.close();
+		} catch(Exception f){
+			System.out.println("Someting else wong");
 		}
 	}
-
 }
