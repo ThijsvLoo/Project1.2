@@ -2,21 +2,12 @@ import javax.swing.JFrame;
 import javax.swing.*;
 public class Window {
 	
-	public static final int WIDTH = 600, HEIGHT = 1200;
+	public static final int WIDTH = 250, HEIGHT = 780;
 	private JFrame frame2;
 	private Board board;
 	
 	public Window(){
-		JFrame frame = new JFrame();
-		JPanel panel = new JPanel();
-		frame.setVisible(true);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(250, 780);
-		panel.setVisible(true);
-		JButton button = new JButton("hello");
-		button.setLocation(0,0);
-		panel.add(button);
-		frame.add(panel);
+		
 
 		frame2 = new JFrame("Tetris Game");
 		frame2.setSize(WIDTH, HEIGHT);
