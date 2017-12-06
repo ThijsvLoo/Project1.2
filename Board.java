@@ -125,6 +125,7 @@ public class Board extends JPanel implements KeyListener{
 		if(gameOver) {
 			timer.stop();
 			gameOver();
+			ScoreBoard scoreBoard = new ScoreBoard();
 		}
 	}
 
@@ -224,39 +225,65 @@ public class Board extends JPanel implements KeyListener{
 
 	public void gameOver() {
 		String name = JOptionPane.showInputDialog("What's your name?");
-		String[] nameList = new String[scoreLength + 1];
-		int[] scoreList = new int[scoreLength + 1];
+		String firstName = null;
+		int firstScore = 0;
+		String secondName = null;
+		int secondScore = 0;
+		String thirdName = null;
+		int thirdScore = 0;
 		try{
 			FileReader reader = new FileReader("scoreList.txt");
 			Scanner in = new Scanner(reader);
-			for(int i = 0; i < scoreLength; i++){
-				nameList[i] = in.next();
-				scoreList[i] = Integer.parseInt(in.next());
-			}
+				firstName = in.next();
+				firstScore = Integer.parseInt(in.next());
+				secondName = in.next();
+				secondScore = Integer.parseInt(in.next());
+				thirdName = in.next();
+				thirdScore = Integer.parseInt(in.next());
+		
 			reader.close();
 		} catch(Exception e) {
 			System.out.println("Someting wong");
 		}
-
-		for(int k = scoreLength-1; k >= 0; k--){
-			if(score > scoreList[k]){
-				scoreList[k+1] = scoreList[k];
-				nameList[k+1] = nameList[k];
-			} else {
-				scoreList[k+1]= score;
-				nameList[k+1] = name;
-			}
+		
+		if(score > firstScore){
+			thirdName = secondName;
+			thirdScore = secondScore;
+			secondName = firstName;
+			secondScore = firstScore;
+			firstScore = score;
+			firstName = name;
 		}
-
+		else if(score > secondScore){
+			thirdName = secondName;
+			thirdScore = secondScore;
+			secondScore = score;
+			secondName = name;
+		}
+		else if(score > thirdScore){
+			thirdScore = score;
+			thirdName = name;
+		}
+		else{
+			score = score;
+		}
 
 		try{
 			FileWriter writer = new FileWriter("scoreList.txt");
-			for(int l = 0; l < scoreLength; l++){
-				writer.write(nameList[l] + " " + scoreList[l] + System.lineSeparator());
-			}
+				writer.write(firstName + " " + firstScore + System.lineSeparator());
+				writer.write(secondName + " " + secondScore + System.lineSeparator());
+				writer.write(thirdName+ " " + thirdScore + System.lineSeparator());
+		
 			writer.close();
-		} catch(Exception f){
+		}	
+		catch(Exception f){
 			System.out.println("Someting else wong");
 		}
+		
+		
+		
+
+	
+	
 	}
 }
