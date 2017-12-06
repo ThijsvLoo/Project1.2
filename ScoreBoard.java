@@ -86,7 +86,7 @@ public class ScoreBoard extends JFrame{
 				secondName.setText("Second Heir: " + in.next());
 				secondScore.setText(in.next() + " Points");
 				thirdName.setText("Last in Line: " + in.next());
-				thirdScore.setText(in.next() + "Points");
+				thirdScore.setText(in.next() + " Points");
 		
 			reader.close();
 		} catch(Exception e) {
