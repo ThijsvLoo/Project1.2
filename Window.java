@@ -32,8 +32,7 @@ public class Window {
 			clip.open(audioInputStream);
 			clip.start();
 		}
-		catch(Exception ex)
-		{
+		catch(Exception ex){
 		}
 	}
 	

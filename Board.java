@@ -86,7 +86,7 @@ public class Board extends JPanel implements KeyListener{
 
 		shapes[6] = new Shape(blocks.getSubimage(blockSize*6, 0, blockSize, blockSize), new int[][] {
 				{1,1,1,1},
-				{1,0,0,0} //Y shape
+				{0,1,0,0} //Y shape
 		}, this, 7);
 
 		shapes[7] = new Shape(blocks.getSubimage(blockSize*7, 0, blockSize, blockSize), new int[][] {
