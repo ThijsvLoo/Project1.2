@@ -63,7 +63,7 @@ public class ScoreBoard extends JFrame{
 		panel.add(secondScore);
 		panel.add(thirdName);
 		panel.add(thirdScore);
-		
+
 		mainPanel.add(panel, BorderLayout.CENTER);
 		this.add(mainPanel);
 	}
@@ -94,6 +94,6 @@ public class ScoreBoard extends JFrame{
 			System.out.println("Someting wong");
 		}
 	}
-	
+
 	
 }
