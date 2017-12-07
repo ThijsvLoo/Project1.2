@@ -12,8 +12,6 @@ import static java.lang.System.*;
 import java.awt.*;
 import javax.swing.*;
 import java.util.Scanner;
-
-
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -24,13 +22,13 @@ import java.io.*;
  */
 
 public class ScoreBoard extends JFrame{
-	JTextField firstName;
-	JTextField firstScore;
-	JTextField secondName;
-	JTextField secondScore;
-	JTextField thirdName;
-	JTextField thirdScore;
-	JButton button;
+	private JTextField firstName;
+	private JTextField firstScore;
+	private JTextField secondName;
+	private JTextField secondScore;
+	private JTextField thirdName;
+	private JTextField thirdScore;
+	private JButton button;
 	
 	public ScoreBoard(){
 		createComponents();
@@ -57,6 +55,7 @@ public class ScoreBoard extends JFrame{
 		
 		JPanel panel = new JPanel();
 		panel.setLayout( new GridLayout(3,2));
+
 		panel.add(firstName);
 		panel.add(firstScore);
 		panel.add(secondName);
@@ -88,7 +87,7 @@ public class ScoreBoard extends JFrame{
 				secondScore.setText(in.next() + " Points");
 				thirdName.setText("Legend's Guardian: " + in.next());
 				thirdScore.setText(in.next() + " Points");
-		
+
 			reader.close();
 		} catch(Exception e) {
 			System.out.println("Someting wong");
