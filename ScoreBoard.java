@@ -12,8 +12,6 @@ import static java.lang.System.*;
 import java.awt.*;
 import javax.swing.*;
 import java.util.Scanner;
-
-
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -21,13 +19,13 @@ import java.util.*;
 import java.io.*;
 
 public class ScoreBoard extends JFrame{
-	JTextField firstName;
-	JTextField firstScore;
-	JTextField secondName;
-	JTextField secondScore;
-	JTextField thirdName;
-	JTextField thirdScore;
-	JButton button;
+	private JTextField firstName;
+	private JTextField firstScore;
+	private JTextField secondName;
+	private JTextField secondScore;
+	private JTextField thirdName;
+	private JTextField thirdScore;
+	private JButton button;
 	
 	public ScoreBoard(){
 		createComponents();
@@ -51,6 +49,7 @@ public class ScoreBoard extends JFrame{
 		
 		JPanel panel = new JPanel();
 		panel.setLayout( new GridLayout(3,2));
+
 		panel.add(firstName);
 		panel.add(firstScore);
 		panel.add(secondName);
@@ -75,27 +74,28 @@ public class ScoreBoard extends JFrame{
 	
 	public void createButton(){
 		button = new JButton("Are you a Legend?");
-		
-		button.addActionListener( new ActionListener() {
+
+		ActionListener listener = new ActionListener() {
 			public void actionPerformed(ActionEvent z){
 				try{
-			FileReader reader = new FileReader("scoreList.txt");
-			Scanner in = new Scanner(reader);
-				firstName.setText("Legend of Legends: " + in.next());
-				firstScore.setText(in.next() + " Points");
-				secondName.setText("Second Heir: " + in.next());
-				secondScore.setText(in.next() + " Points");
-				thirdName.setText("Legends Guardian: " + in.next());
-				thirdScore.setText(in.next() + " Points");
-		
-			reader.close();
-		} catch(Exception e) {
-			System.out.println("Someting wong");
-		}
-			
+					FileReader reader = new FileReader("scoreList.txt");
+					Scanner in = new Scanner(reader);
+
+					firstName.setText("Legend of Legends: " + in.next());
+					firstScore.setText(in.next() + " Points");
+					secondName.setText("Second Heir: " + in.next());
+					secondScore.setText(in.next() + " Points");
+					thirdName.setText("Legend's Guardian: " + in.next());
+					thirdScore.setText(in.next() + " Points");
+
+					reader.close();
+				} catch(Exception e) {
+					System.out.println("Someting wong");
+				}
 			}
-		
-		});
+		};
+
+		button.addActionListener(listener);
 	}
 	
 }
