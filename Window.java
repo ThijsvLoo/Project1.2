@@ -1,5 +1,10 @@
 import javax.swing.JFrame;
 import javax.swing.*;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import java.io.*;
+
 public class Window {
 	
 	public static final int WIDTH = 250, HEIGHT = 780;
@@ -20,6 +25,16 @@ public class Window {
 		frame2.add(board);
 		frame2.addKeyListener(board);
 		frame2.setVisible(true);
+
+		try{
+			AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(this.getClass().getResource("tetris.wav"));
+			Clip clip = AudioSystem.getClip();
+			clip.open(audioInputStream);
+			clip.start();
+		}
+		catch(Exception ex)
+		{
+		}
 	}
 	
 	
