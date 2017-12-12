@@ -1,6 +1,8 @@
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-
+/**
+ * @author Maaike, Jonas, Andreas, Thijs
+ */
 public class Shape {
 	
 	private BufferedImage block;
@@ -27,7 +29,10 @@ public class Shape {
 		x = 0;
 		y = 0;
 	}
-	
+
+	/**
+	 *
+	 */
 	public void update(){
 		time += System.currentTimeMillis() - lastTime;
 		lastTime = System.currentTimeMillis();

@@ -15,7 +15,9 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 import java.util.*;
 import java.io.*;
-
+/**
+ * @author Maaike, Jonas, Andreas, Thijs
+ */
 public class Board extends JPanel implements KeyListener{
 
 	private BufferedImage blocks;
@@ -86,7 +88,7 @@ public class Board extends JPanel implements KeyListener{
 
 		shapes[6] = new Shape(blocks.getSubimage(blockSize*6, 0, blockSize, blockSize), new int[][] {
 				{1,1,1,1},
-				{1,0,0,0} //Y shape
+				{0,1,0,0} //Y shape
 		}, this, 7);
 
 		shapes[7] = new Shape(blocks.getSubimage(blockSize*7, 0, blockSize, blockSize), new int[][] {
@@ -120,6 +122,9 @@ public class Board extends JPanel implements KeyListener{
 
 	}
 
+	/**
+	 * Update the shape on the board, and if you are game over, stop the timer and run the gameover funcion
+	 */
 	public void update(){
 		currentShape.update();
 		if(gameOver) {
@@ -129,7 +134,10 @@ public class Board extends JPanel implements KeyListener{
 		}
 	}
 
-
+	/**
+	 * Draw blocks on the board, and draw gridlines
+	 * @param g object of graphics
+	 */
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 
@@ -152,6 +160,9 @@ public class Board extends JPanel implements KeyListener{
 
 	}
 
+	/**
+	 * Create a new shape object from a random index value
+	 */
 	public void setNextShape(){
 
 		int index = (int)(Math.random()*shapes.length);
