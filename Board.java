@@ -18,7 +18,6 @@ import java.io.*;
 /**
  * @author Maaike, Jonas, Andreas, Thijs
  */
-
 public class Board extends JPanel implements KeyListener{
 
 	private BufferedImage blocks;
@@ -35,10 +34,7 @@ public class Board extends JPanel implements KeyListener{
 	private int scoreLength = 3;
 
 	public Board(){
-		/**
-		 * Create and ImageIO object for reading our texture file
-		 * @see tiles.png
-		 */
+
 		try {
 			blocks = ImageIO.read(Board.class.getResource("/tiles.png"));
 		} catch (IOException e) {
@@ -165,7 +161,7 @@ public class Board extends JPanel implements KeyListener{
 	}
 
 	/**
-	 * Create a new shape object from a random index value
+	 * create a new shape object from a random index value
 	 */
 	public void setNextShape(){
 
@@ -294,5 +290,11 @@ public class Board extends JPanel implements KeyListener{
 		catch(Exception f){
 			System.out.println("Someting else wong");
 		}
+		
+		
+		
+
+	
+	
 	}
 }

@@ -12,24 +12,28 @@ import static java.lang.System.*;
 import java.awt.*;
 import javax.swing.*;
 import java.util.Scanner;
+
+
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 import java.util.*;
 import java.io.*;
-/**
- * @author Maaike, Jonas, Andreas, Thijs
- */
+
 
 public class ScoreBoard extends JFrame{
-	private JTextField firstName;
-	private JTextField firstScore;
-	private JTextField secondName;
-	private JTextField secondScore;
-	private JTextField thirdName;
-	private JTextField thirdScore;
-	private JButton button;
 	
+	JTextField firstName;
+	JTextField firstScore;
+	JTextField secondName;
+	JTextField secondScore;
+	JTextField thirdName;
+	JTextField thirdScore;
+	JButton button;
+	
+	/**
+	*Creates the gui board
+	*/
 	public ScoreBoard(){
 		createComponents();
 		
@@ -41,37 +45,35 @@ public class ScoreBoard extends JFrame{
 		this.setVisible(true);
 		
 	}
-
 	/**
-	 * Creates the components for the scoreboard and adds them to a panel
-	 */
+	*Creates the panel and adds all of the components to the panel
+	*/
 	public void createComponents(){
-	
 		
-		//createButton();
-		createLabels();
+		createText();
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BorderLayout());
 		
 		JPanel panel = new JPanel();
 		panel.setLayout( new GridLayout(3,2));
-
 		panel.add(firstName);
 		panel.add(firstScore);
 		panel.add(secondName);
 		panel.add(secondScore);
 		panel.add(thirdName);
 		panel.add(thirdScore);
-
+		
 		mainPanel.add(panel, BorderLayout.CENTER);
 		this.add(mainPanel);
-	}
+		
 
+	}
+	
 	/**
-	 * Create the score labels by reading from the textfile
-	 *
-	 */
-	public void createLabels(){
+	*Creates textfields that display the names and scores on the scoreboard 
+	*By using a file reader to read off of the ScoreList text
+	*/
+	public void createText(){
 		 firstName =  new JTextField(20);
 		 firstScore = new JTextField(10);
 		 secondName = new JTextField(20);
@@ -87,12 +89,12 @@ public class ScoreBoard extends JFrame{
 				secondScore.setText(in.next() + " Points");
 				thirdName.setText("Legend's Guardian: " + in.next());
 				thirdScore.setText(in.next() + " Points");
-
+		
 			reader.close();
 		} catch(Exception e) {
 			System.out.println("Someting wong");
 		}
 	}
-
+	
 	
 }

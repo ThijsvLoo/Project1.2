@@ -1,8 +1,5 @@
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-/**
- * @author Maaike, Jonas, Andreas, Thijs
- */
 
 public class Shape {
 	
@@ -32,28 +29,26 @@ public class Shape {
 	}
 
 	/**
-	 *	Keeps track of how much time passed time the last move down
-	 *	if the time is over our gamespeed, move the piece down by one
-	 *	Checks for collision between shapes or wehen a shape collides with the bottom, if so get the next shape
-	 * 	Checks if the user can move left or right, and if they did, move
 	 *
 	 */
 	public void update(){
 		time += System.currentTimeMillis() - lastTime;
 		lastTime = System.currentTimeMillis();
 		
-		if(collision) {
+		if(collision)
+		{
 			for(int row = 0; row < coords.length; row++)
 				for(int col = 0; col < coords[row].length; col++)
 					if(coords[row][col] != 0)
 						board.getBoard()[y + row][x + col] = color;
-
+			
 			checkLine();
 			board.setNextShape();
 		}
 		
 		
-		if(!(x + deltaX + coords[0].length > board.getBoardWidth()) && !(x + deltaX < 0)) {
+		if(!(x + deltaX + coords[0].length > board.getBoardWidth()) && !(x + deltaX < 0))
+		{
 			
 			for(int row = 0; row < coords.length; row++)
 				for(int col = 0; col < coords[row].length; col++)
@@ -67,30 +62,30 @@ public class Shape {
 		}		
 			
 		
-		if(!(y + 1 + coords.length > board.getBoardHeight())) {
+		if(!(y + 1 + coords.length > board.getBoardHeight()))
+		{
 			
 			for(int row = 0; row < coords.length; row++)
 				for(int col = 0; col < coords[row].length; col++)
-					if(coords[row][col] != 0) {
+					if(coords[row][col] != 0)
+					{
 						if(board.getBoard()[y + row + 1][col + x] != 0)
 							collision = true;
 					}
-			if(time > currentSpeed) {
+			if(time > currentSpeed)
+				
+			{
 				y++;
 				time = 0;
 			}
-		} else {
+		}else{
 			collision = true;
 		}
 		
 		deltaX = 0;
 		moveX = true;
 	}
-
-	/**
-	 *
-	 * @param g graphics object
-	 */
+	
 	public void render(Graphics g){
 		
 		for(int row = 0; row < coords.length; row++)
