@@ -27,7 +27,10 @@ public class Shape {
 		x = 0;
 		y = 0;
 	}
-	
+
+	/**
+	 *
+	 */
 	public void update(){
 		time += System.currentTimeMillis() - lastTime;
 		lastTime = System.currentTimeMillis();
