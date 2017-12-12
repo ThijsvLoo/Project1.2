@@ -31,7 +31,9 @@ public class ScoreBoard extends JFrame{
 	JTextField thirdScore;
 	JButton button;
 	
-	/**Creates the gui board */
+	/**
+	*Creates the gui board
+	*/
 	public ScoreBoard(){
 		createComponents();
 		
@@ -43,11 +45,11 @@ public class ScoreBoard extends JFrame{
 		this.setVisible(true);
 		
 	}
-	/**Creates the panel and adds all of the components to the panel*/
+	/**
+	*Creates the panel and adds all of the components to the panel
+	*/
 	public void createComponents(){
-	
 		
-		//createButton();
 		createText();
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BorderLayout());
@@ -67,8 +69,10 @@ public class ScoreBoard extends JFrame{
 
 	}
 	
-	/**Creates textfields that display the names and scores on the scoreboard by using a file reader to read off of the ScoreList
-	*text*/
+	/**
+	*Creates textfields that display the names and scores on the scoreboard 
+	*By using a file reader to read off of the ScoreList text
+	*/
 	public void createText(){
 		 firstName =  new JTextField(20);
 		 firstScore = new JTextField(10);
