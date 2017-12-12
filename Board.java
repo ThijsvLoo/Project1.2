@@ -16,6 +16,8 @@ import javax.swing.Timer;
 import java.util.*;
 import java.io.*;
 /**
+ * Board is used fot he board object, which holds a board matrix, and the blueprints for all the different pentomino shapes.
+ * It also checks when the player is gameover, creates the scoreboard and creates new pentominoes for on the board.
  * @author Maaike, Jonas, Andreas, Thijs
  */
 public class Board extends JPanel implements KeyListener{

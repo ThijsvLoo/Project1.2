@@ -1,6 +1,9 @@
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
+/**
+ * Shape is used for the shape objects on the board, which can rotate, fall down slowly and are rendered
+ */
 public class Shape {
 	
 	private BufferedImage block;
@@ -29,26 +32,26 @@ public class Shape {
 	}
 
 	/**
-	 *
+	 * Keeps track of how much time passed time the last move down
+	 * if the time is over our gamespeed, move the piece down by one
+	 * Checks for collision between shapes or wehen a shape collides with the bottom
 	 */
 	public void update(){
 		time += System.currentTimeMillis() - lastTime;
 		lastTime = System.currentTimeMillis();
 		
-		if(collision)
-		{
+		if(collision) {
 			for(int row = 0; row < coords.length; row++)
 				for(int col = 0; col < coords[row].length; col++)
 					if(coords[row][col] != 0)
 						board.getBoard()[y + row][x + col] = color;
-			
+
 			checkLine();
 			board.setNextShape();
 		}
 		
 		
-		if(!(x + deltaX + coords[0].length > board.getBoardWidth()) && !(x + deltaX < 0))
-		{
+		if(!(x + deltaX + coords[0].length > board.getBoardWidth()) && !(x + deltaX < 0)) {
 			
 			for(int row = 0; row < coords.length; row++)
 				for(int col = 0; col < coords[row].length; col++)
@@ -62,30 +65,30 @@ public class Shape {
 		}		
 			
 		
-		if(!(y + 1 + coords.length > board.getBoardHeight()))
-		{
+		if(!(y + 1 + coords.length > board.getBoardHeight())) {
 			
 			for(int row = 0; row < coords.length; row++)
 				for(int col = 0; col < coords[row].length; col++)
-					if(coords[row][col] != 0)
-					{
+					if(coords[row][col] != 0) {
 						if(board.getBoard()[y + row + 1][col + x] != 0)
 							collision = true;
 					}
-			if(time > currentSpeed)
-				
-			{
+			if(time > currentSpeed) {
 				y++;
 				time = 0;
 			}
-		}else{
+		} else {
 			collision = true;
 		}
 		
 		deltaX = 0;
 		moveX = true;
 	}
-	
+
+	/**
+	 * Draw the pentomino on the board by putting the textured squares on the board
+	 * @param g Graphics object
+	 */
 	public void render(Graphics g){
 		
 		for(int row = 0; row < coords.length; row++)
@@ -96,7 +99,12 @@ public class Shape {
 		
 		
 	}
-	
+
+	/**
+	 * Check for lines that are full with blocks,
+	 * if any lines are found, delete them and add score.
+	 * Score is added by them sum of consecutive integers squared from number of lines deleted to 1, times 100
+	 */
 	private void checkLine(){
 		int height = board.getBoard().length - 1;
 		
@@ -121,8 +129,12 @@ public class Shape {
 			}
 		}
 	}
-	
-	
+
+	/**
+	 * Ratate the curent shape using getTranspose and getReverseMatrix
+	 * @see getTranspose
+	 * @see getReverseMatrix
+	 */
 	public void rotate(){
 		
 		if(collision)
@@ -147,7 +159,12 @@ public class Shape {
 		}
 		coords = rotatedMatrix;
 	}
-	
+
+	/**
+	 * Rotate the matrix given by the poarameter
+	 * @param matrix
+	 * @return
+	 */
 	private int[][] getTranspose(int[][] matrix){
 		int[][] newMatrix = new int[matrix[0].length][matrix.length];
 		

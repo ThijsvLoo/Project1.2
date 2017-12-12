@@ -6,6 +6,7 @@ import javax.sound.sampled.Clip;
 import java.io.*;
 
 /**
+ * The main class, the constructer creates the frame bard etc, and then the main function starts everything off
  * @author Maaike, Jonas, Andreas, Thijs
  */
 public class Window {

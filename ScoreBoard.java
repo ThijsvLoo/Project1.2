@@ -20,7 +20,9 @@ import javax.swing.Timer;
 import java.util.*;
 import java.io.*;
 
-
+/**
+ * A class for reading the highscore file, and displaying all the highscores, gets used when gameover
+ */
 public class ScoreBoard extends JFrame{
 	
 	JTextField firstName;
@@ -65,8 +67,6 @@ public class ScoreBoard extends JFrame{
 		
 		mainPanel.add(panel, BorderLayout.CENTER);
 		this.add(mainPanel);
-		
-
 	}
 	
 	/**
@@ -80,21 +80,20 @@ public class ScoreBoard extends JFrame{
 		 secondScore = new JTextField(10);
 		 thirdName = new JTextField(20);
 		 thirdScore = new JTextField(10);
-		 		try{
+		try{
 			FileReader reader = new FileReader("scoreList.txt");
 			Scanner in = new Scanner(reader);
-				firstName.setText("Legend of Legends: " + in.next());
-				firstScore.setText(in.next() + " Points");
-				secondName.setText("Second Heir: " + in.next());
-				secondScore.setText(in.next() + " Points");
-				thirdName.setText("Legend's Guardian: " + in.next());
-				thirdScore.setText(in.next() + " Points");
-		
+
+			firstName.setText("Legend of Legends: " + in.next());
+			firstScore.setText(in.next() + " Points");
+			secondName.setText("Second Heir: " + in.next());
+			secondScore.setText(in.next() + " Points");
+			thirdName.setText("Legend's Guardian: " + in.next());
+			thirdScore.setText(in.next() + " Points");
+
 			reader.close();
 		} catch(Exception e) {
 			System.out.println("Someting wong");
 		}
 	}
-	
-	
 }
