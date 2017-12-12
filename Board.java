@@ -294,11 +294,5 @@ public class Board extends JPanel implements KeyListener{
 		catch(Exception f){
 			System.out.println("Someting else wong");
 		}
-		
-		
-		
-
-	
-	
 	}
 }

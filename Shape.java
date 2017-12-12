@@ -32,12 +32,15 @@ public class Shape {
 	}
 
 	/**
-	 *	keeps track of how much time passed sicne the last move down
+	 *	Keeps track of how much time passed time the last move down
+	 *	if the time is over our gamespeed, move the piece down by one
+	 *	Checks for collision between shapes or wehen a shape collides with the bottom, if so get the next shape
+	 * 	Checks if the user can move left or right, and if they did, move
+	 *
 	 */
 	public void update(){
 		time += System.currentTimeMillis() - lastTime;
 		lastTime = System.currentTimeMillis();
-		System.out.println(time);
 		
 		if(collision) {
 			for(int row = 0; row < coords.length; row++)
@@ -83,7 +86,11 @@ public class Shape {
 		deltaX = 0;
 		moveX = true;
 	}
-	
+
+	/**
+	 *
+	 * @param g graphics object
+	 */
 	public void render(Graphics g){
 		
 		for(int row = 0; row < coords.length; row++)
