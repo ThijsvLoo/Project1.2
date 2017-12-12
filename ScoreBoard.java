@@ -22,6 +22,7 @@ import java.io.*;
 /**
  * @author Maaike, Jonas, Andreas, Thijs
  */
+
 public class ScoreBoard extends JFrame{
 	JTextField firstName;
 	JTextField firstScore;
@@ -42,7 +43,10 @@ public class ScoreBoard extends JFrame{
 		this.setVisible(true);
 		
 	}
-	
+
+	/**
+	 * Creates the components for the scoreboard and adds them to a panel
+	 */
 	public void createComponents(){
 	
 		
@@ -62,10 +66,12 @@ public class ScoreBoard extends JFrame{
 		
 		mainPanel.add(panel, BorderLayout.CENTER);
 		this.add(mainPanel);
-		
-
 	}
-	
+
+	/**
+	 * Create the score labels by reading from the textfile
+	 *
+	 */
 	public void createLabels(){
 		 firstName =  new JTextField(20);
 		 firstScore = new JTextField(10);
